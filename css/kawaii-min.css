@@ -12,6 +12,8 @@
   --kw-font: 'Fredoka', 'Quicksand', 'Nunito', sans-serif;
   --kw-ink: #5b3a4e;
   --kw-desc-lines: 3;          /* how many description lines a card shows */
+  --kw-notch: 0px;             /* ticket-stub notches: set to 22px to show the little round cut-outs */
+  --kw-rim: #fff;              /* outline color around candy shapes (changes in dark mode) */
   --kw-svg-read:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 42C10 32 5 23 5 16a9.5 9.5 0 0 1 19-3 9.5 9.5 0 0 1 19 3c0 7-5 16-19 26z' fill='%23ffc2db' stroke='%23ff8fb8' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M15 22q2.5-3.2 5 0M28 22q2.5-3.2 5 0M21.5 28q2.5 2.8 5 0' fill='none' stroke='%237a3b5a' stroke-width='2' stroke-linecap='round'/%3E%3Cellipse cx='13.5' cy='27' rx='3' ry='2' fill='%23ff8fb8' opacity='.6'/%3E%3Cellipse cx='34.5' cy='27' rx='3' ry='2' fill='%23ff8fb8' opacity='.6'/%3E%3Cpath d='M12 13q1-3 4-3.5' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
   --kw-svg-unread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M3 14l11 10L3 34z' fill='%23ffe0ee' stroke='%23ff7eb6' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M45 14L34 24l11 10z' fill='%23ffe0ee' stroke='%23ff7eb6' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='24' cy='24' r='13' fill='%23ff7eb6' stroke='%23e8407f' stroke-width='2.5'/%3E%3Cpath d='M15 18a11 11 0 0 1 7-5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='19.5' cy='24' r='1.8' fill='%235b3a4e'/%3E%3Ccircle cx='28.5' cy='24' r='1.8' fill='%235b3a4e'/%3E%3Cpath d='M22 28q2 2.4 4 0' fill='none' stroke='%235b3a4e' stroke-width='1.8' stroke-linecap='round'/%3E%3Cellipse cx='16' cy='28' rx='2.4' ry='1.6' fill='%23fff' opacity='.55'/%3E%3Cellipse cx='32' cy='28' rx='2.4' ry='1.6' fill='%23fff' opacity='.55'/%3E%3Cpath d='M40 3l1.8 4.2L46 9l-4.2 1.8L40 15l-1.8-4.2L34 9l4.2-1.8z' fill='%23ffe45e' stroke='%23f5b800' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E");
   --kw-svg-locked: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M15 22v-6a9 9 0 0 1 18 0v6' fill='none' stroke='%23a78bdf' stroke-width='4.5' stroke-linecap='round'/%3E%3Crect x='8' y='21' width='32' height='22' rx='7' fill='%23dccbff' stroke='%23a78bdf' stroke-width='2.5'/%3E%3Ccircle cx='18.5' cy='31' r='1.9' fill='%235b3a4e'/%3E%3Ccircle cx='29.5' cy='31' r='1.9' fill='%235b3a4e'/%3E%3Cpath d='M22 35q2 2.4 4 0' fill='none' stroke='%235b3a4e' stroke-width='1.8' stroke-linecap='round'/%3E%3Cellipse cx='14.5' cy='35' rx='2.6' ry='1.7' fill='%23ff8fb8' opacity='.6'/%3E%3Cellipse cx='33.5' cy='35' rx='2.6' ry='1.7' fill='%23ff8fb8' opacity='.6'/%3E%3Cpath d='M12 26q1-2.4 3.5-3' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -22,46 +24,29 @@
 #kw-index *, #kw-index *::before, #kw-index *::after { box-sizing: border-box; }
 
 /* ===================================================
-   1. NOTIFICATION DOCK (top)
+   1. NOTIFICATION BAR (top) - simple pills
    =================================================== */
-#kw-index .kw-dock { margin: 0 0 32px; }
-#kw-index .kw-dock-list {
-  list-style: none; margin: 0 auto; padding: 14px 24px;
-  width: fit-content; max-width: 100%;
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px;
-  background: var(--k-surface);
-  border: 3px dashed var(--k-border);
-  border-radius: 36px;
-  box-shadow: 0 6px 0 color-mix(in srgb, var(--k-border) 55%, transparent);
-}
+#kw-index .kw-dock { margin: 0 0 26px; }
+#kw-index .kw-dock-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 #kw-index .kw-dock-item { margin: 0; padding: 0; list-style: none; }
+#kw-index .kw-dock-read { margin-left: auto; }
 #kw-index .kw-dock-link {
-  display: flex; flex-direction: column; align-items: center; gap: 7px;
-  width: 104px; text-align: center; text-decoration: none; color: var(--k-text);
-  transition: transform .18s;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 15px; border-radius: 999px;
+  background: var(--k-surface); border: 2px solid var(--k-border);
+  color: var(--k-text); font: 500 .82rem/1 var(--kw-font); text-decoration: none;
+  transition: transform .15s;
 }
-#kw-index .kw-dock-link:hover { transform: translateY(-4px); }
-#kw-index .kw-dock-link:focus-visible { outline: 3px solid var(--k-pink-deep); outline-offset: 4px; border-radius: 18px; }
-#kw-index .kw-dock-ico {
-  width: 52px; height: 52px; border-radius: 50%;
-  display: grid; place-items: center; font-size: 1.45rem; line-height: 1;
-  background: var(--k-surface-2); border: 3px solid #fff;
-  box-shadow: 0 4px 0 var(--k-border);
-  transition: rotate .2s;
-}
-#kw-index .kw-dock-link:hover .kw-dock-ico { rotate: -8deg; }
-#kw-index .kw-dock-text { font: 500 .78rem/1.25 var(--kw-font); }
-
+#kw-index .kw-dock-link:hover { transform: translateY(-2px); }
+#kw-index .kw-dock-link:focus-visible { outline: 3px solid var(--k-pink-deep); outline-offset: 3px; }
+#kw-index .kw-dock-ico { display: inline-block; font-size: 1rem; line-height: 1; }
+#kw-index .kw-dock-text { display: inline; }
 #kw-index .kw-dock-new .kw-dock-ico::before        { content: "\1F514"; }
 #kw-index .kw-dock-mine .kw-dock-ico::before       { content: "\1F48C"; }
 #kw-index .kw-dock-unanswered .kw-dock-ico::before { content: "\1F423"; }
 #kw-index .kw-dock-read .kw-dock-ico::before       { content: "\2705"; }
-#kw-index .kw-dock-new .kw-dock-ico        { background: var(--k-pink-deep); box-shadow: 0 4px 0 rgba(255,93,158,.4); }
-#kw-index .kw-dock-mine .kw-dock-ico       { background: var(--k-lilac); }
-#kw-index .kw-dock-unanswered .kw-dock-ico { background: var(--k-lemon); }
-#kw-index .kw-dock-read .kw-dock-ico       { background: var(--k-mint); }
-#kw-index .kw-dock-new .kw-dock-text       { font-weight: 600; color: var(--k-pink-deep); }
-#kw-index .kw-dock-read { padding-left: 22px; border-left: 2px dashed var(--k-border); }
+#kw-index .kw-dock-new .kw-dock-link  { background: var(--k-pink-deep); border-color: var(--k-pink-deep); color: #fff; }
+#kw-index .kw-dock-read .kw-dock-link { background: var(--k-mint); border-color: var(--k-mint); color: #1f6b53; }
 
 /* ===================================================
    2. CATEGORY = candy box (colors cycle every 8 categories)
@@ -70,6 +55,7 @@
   --kw-accent: #ff8fb8;
   --kw-on: #fff;
   --kw-shadow: rgba(0,0,0,.14);
+  --kw-head: var(--kw-accent);
   --kw-card: color-mix(in srgb, var(--kw-accent) 15%, var(--k-surface));
   --kw-soft: color-mix(in srgb, var(--k-text) 72%, var(--kw-card));
   position: relative;
@@ -96,11 +82,11 @@
   color: var(--kw-on);
   background:
     radial-gradient(circle, rgba(255,255,255,.38) 2px, transparent 2.6px) 0 0 / 18px 18px,
-    var(--kw-accent);
+    var(--kw-head);
 }
 #kw-index .kw-cat-head::after {          /* frosting drip */
   content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px;
-  background: radial-gradient(circle at 10px 0, var(--kw-accent) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
+  background: radial-gradient(circle at 10px 0, var(--kw-head) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
 }
 #kw-index .kw-cat-spark {
   flex: none; width: 26px; height: 26px;
@@ -171,7 +157,7 @@
 #kw-index .kw-forum:has(.kw-forum-ico-src[src*="unread"]) .kw-forum-ico-ring::after {
   content: "NEW"; position: absolute; top: -8px; right: -22px;
   padding: 3px 9px; border-radius: 999px;
-  background: var(--k-pink-deep); color: #fff; border: 2px solid #fff;
+  background: var(--k-pink-deep); color: #fff; border: 2px solid var(--kw-rim);
   font: 600 .62rem/1 var(--kw-font); letter-spacing: .08em; rotate: 10deg;
 }
 /* LOCKED (after unread so it wins) */
@@ -180,7 +166,7 @@
 #kw-index .kw-forum:has(.kw-forum-ico-src[src*="locked"]) .kw-forum-ico-ring::after {
   content: "LOCKED"; position: absolute; top: -8px; right: -30px;
   padding: 3px 9px; border-radius: 999px;
-  background: var(--k-lilac); color: var(--kw-ink); border: 2px solid #fff;
+  background: var(--k-lilac); color: var(--kw-ink); border: 2px solid var(--kw-rim);
   font: 600 .62rem/1 var(--kw-font); letter-spacing: .08em; rotate: 10deg;
 }
 
@@ -214,7 +200,7 @@
 #kw-index .kw-chips-mods::before  { content: "\1F451"; }
 #kw-index .kw-chips a {
   display: inline-block; margin: 3px 4px 0; padding: 2px 11px;
-  border-radius: 999px; border: 2px solid #fff;
+  border-radius: 999px; border: 2px solid var(--kw-rim);
   font: 500 .76rem/1.4 var(--kw-font); text-decoration: none; transition: transform .15s;
 }
 #kw-index .kw-chips a:hover { transform: translateY(-2px) rotate(-2deg); }
@@ -228,7 +214,7 @@
   position: relative; overflow: hidden;
   width: 68px; height: 68px; border-radius: 50%;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  color: var(--kw-ink); border: 3px solid #fff;
+  color: var(--kw-ink); border: 3px solid var(--kw-rim);
   box-shadow: 0 4px 0 rgba(0,0,0,.09), inset 0 -5px 0 rgba(0,0,0,.05);
 }
 #kw-index .kw-count::before {
@@ -253,16 +239,17 @@
   border-radius: 0 0 26px 26px;
 }
 #kw-index .kw-ticket::before,
-#kw-index .kw-ticket::after {
-  content: ""; position: absolute; top: -12px; width: 22px; height: 22px;
+#kw-index .kw-ticket::after {                 /* optional cut-outs, off by default (--kw-notch: 0px) */
+  content: ""; position: absolute; top: calc(var(--kw-notch) / -2 - 1px);
+  width: var(--kw-notch); height: var(--kw-notch);
   border-radius: 50%; background: var(--k-surface);
 }
-#kw-index .kw-ticket::before { left: -13px; }
-#kw-index .kw-ticket::after  { right: -13px; }
+#kw-index .kw-ticket::before { left: calc(var(--kw-notch) / -2 - 2px); }
+#kw-index .kw-ticket::after  { right: calc(var(--kw-notch) / -2 - 2px); }
 
 #kw-index .kw-ticket-empty { display: none; width: 100%; text-align: center; font: 500 .88rem var(--kw-font); color: var(--kw-soft); }
-#kw-index .kw-ticket:not(:has(.kw-last-title, .kw-ad)) .kw-ticket-empty { display: block; }
-#kw-index .kw-ticket:not(:has(.kw-last-title, .kw-ad)) > :not(.kw-ticket-empty) { display: none; }
+#kw-index .kw-ticket:not(:has(.kw-last-title:not(:empty), .kw-ad-title a:not(:empty))) .kw-ticket-empty { display: block; }
+#kw-index .kw-ticket:not(:has(.kw-last-title:not(:empty), .kw-ad-title a:not(:empty))) > :not(.kw-ticket-empty) { display: none; }
 
 #kw-index .kw-avatar {                         /* rainbow candy ring */
   flex: none; line-height: 0; padding: 3px; border-radius: 50%;
@@ -316,9 +303,16 @@
 /* ===================================================
    5. DARK MODE + RESPONSIVE
    =================================================== */
+[data-theme="dark"] #kw-index { --kw-rim: var(--k-surface); }
+[data-theme="dark"] #kw-index .kw-cat { --kw-head: color-mix(in srgb, var(--kw-accent) 66%, #2a1a40); box-shadow: 0 7px 0 rgba(0,0,0,.35); }
+[data-theme="dark"] #kw-index .kw-cat:nth-of-type(8n+7) { --kw-on: #fff; --kw-shadow: rgba(0,0,0,.25); }
+[data-theme="dark"] #kw-index .kw-forum { box-shadow: 0 5px 0 rgba(0,0,0,.3); }
+[data-theme="dark"] #kw-index .kw-forum:hover { border-color: var(--kw-accent); }
 [data-theme="dark"] #kw-index .kw-forum-ico-ring { background: radial-gradient(circle at 30% 25%, #4a3a68, var(--k-surface) 65%); }
-[data-theme="dark"] #kw-index .kw-dock-ico,
-[data-theme="dark"] #kw-index .kw-count { border-color: var(--k-surface); }
+[data-theme="dark"] #kw-index .kw-count { box-shadow: 0 4px 0 rgba(0,0,0,.3), inset 0 -5px 0 rgba(0,0,0,.08); }
+[data-theme="dark"] #kw-index .kw-dock-link,
+[data-theme="dark"] #kw-index .kw-strip-link { box-shadow: none; }
+[data-theme="dark"] #kw-index .kw-strip-link { box-shadow: 0 4px 0 rgba(0,0,0,.3); }
 
 @media (max-width: 1000px) {
   #kw-index .kw-forum { flex-basis: calc((100% - 18px) / 2); }
@@ -329,7 +323,7 @@
   #kw-index .kw-cat-head { padding: 12px 18px; }
   #kw-index .kw-cat-title { font-size: 1.15rem; }
   #kw-index .kw-cat-deco { display: none; }
-  #kw-index .kw-dock-read { padding-left: 0; border-left: 0; }
+  #kw-index .kw-dock-read { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   #kw-index * { animation: none !important; transition: none !important; }
