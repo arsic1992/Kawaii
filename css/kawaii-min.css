@@ -328,3 +328,9 @@
 @media (prefers-reduced-motion: reduce) {
   #kw-index * { animation: none !important; transition: none !important; }
 }
+
+/* dark mode: group-colored usernames have inline colors (e.g. dark blue) -> give them a light name tag */
+[data-theme="dark"] #kw-index .kw-last-meta a:has(> .usr_grp_clr) {
+  display: inline-block; padding: 0 9px; border-radius: 999px;
+  background: rgba(255,255,255,.9); text-decoration: none;
+}
