@@ -1,0 +1,294 @@
+/* ===================================================
+   KAWAII :: index_box  (append to kawaii-min.css)
+   Uses the --k-* variables from the foundation block.
+   =================================================== */
+
+:root {
+  --k-display: 'Quicksand', 'Nunito', sans-serif;
+  --kw-ink: #5b3a4e;              /* dark text used on pastel candy colors */
+  --kw-ico-read:   url(https://2img.net/i/fa/prosilver/forum_read.gif);
+  --kw-ico-unread: url(https://2img.net/i/fa/prosilver/forum_unread.gif);
+  --kw-ico-locked: url(https://2img.net/i/fa/prosilver/forum_read_locked.gif);
+}
+
+/* ---------- sticker bar (top + bottom links) ---------- */
+.kw-toolbar { margin: 0 0 22px; }
+.kw-toolbar--foot { margin: 6px 0 0; }
+.kw-pills {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+}
+.kw-pill a {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 999px;
+  font: 800 .82rem/1 var(--k-display);
+  color: var(--k-text); text-decoration: none;
+  background: var(--k-surface);
+  border: 2px solid var(--k-border);
+  box-shadow: 0 4px 0 var(--k-border);
+  transition: transform .15s, box-shadow .15s;
+}
+.kw-pill a:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--k-border); }
+.kw-pill a:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--k-border); }
+.kw-pill a:focus-visible { outline: 3px solid var(--k-pink-deep); outline-offset: 3px; }
+
+.kw-pill--new a   { background: var(--k-pink-deep); border-color: #fff; color: #fff; box-shadow: 0 4px 0 rgba(255,93,158,.45); text-shadow: 0 1px 0 rgba(0,0,0,.18); }
+.kw-pill--read    { margin-left: auto; }
+.kw-pill--read a  { background: var(--k-mint); border-color: #fff; color: #1f6b53; box-shadow: 0 4px 0 rgba(60,170,140,.35); }
+.kw-pill--cookies { margin-left: auto; }
+
+.kw-pill--new a::before        { content: "\1F514"; }  /* bell */
+.kw-pill--mine a::before       { content: "\1F48C"; }  /* love letter */
+.kw-pill--unanswered a::before { content: "\1F423"; }  /* hatching chick */
+.kw-pill--read a::before       { content: "\2705"; }   /* check */
+.kw-pill--active a::before     { content: "\1F338"; }  /* blossom */
+.kw-pill--posters a::before    { content: "\1F36C"; }  /* candy */
+.kw-pill--overall a::before    { content: "\1F3C6"; }  /* trophy */
+.kw-pill--cookies a::before    { content: "\1F36A"; }  /* cookie */
+
+/* ---------- category = candy box ---------- */
+.kw-cat {
+  --kw-accent: #ff8fb8;
+  --kw-deep:   #e8407f;
+  --kw-emoji:  "\1F353";
+  --kw-soft: color-mix(in srgb, var(--k-text) 72%, var(--k-surface-2));
+  position: relative;
+  margin: 0 0 30px;
+  background: var(--k-surface);
+  border: 3px solid var(--kw-accent);
+  border-radius: 28px;
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--kw-accent) 40%, transparent);
+}
+.kw-cat:nth-of-type(5n+2) { --kw-accent: #b79bff; --kw-deep: #7c52e6; --kw-emoji: "\1F347"; }
+.kw-cat:nth-of-type(5n+3) { --kw-accent: #6fdcbc; --kw-deep: #12987a; --kw-emoji: "\1F36D"; }
+.kw-cat:nth-of-type(5n+4) { --kw-accent: #ffa97a; --kw-deep: #e0632b; --kw-emoji: "\1F9C1"; }
+.kw-cat:nth-of-type(5n+5) { --kw-accent: #7cc8ff; --kw-deep: #1f7fd1; --kw-emoji: "\1F361"; }
+
+/* polka-dot ribbon with frosting drip */
+.kw-cat-head {
+  position: relative;
+  padding: 13px 24px;
+  border-radius: 24px 24px 0 0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.38) 2px, transparent 2.6px) 0 0 / 18px 18px,
+    var(--kw-accent);
+}
+.kw-cat-head::after {            /* scalloped drip */
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px;
+  background: radial-gradient(circle at 10px 0, var(--kw-accent) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
+}
+.kw-cat-head::before {           /* tiny hearts on the right */
+  content: "\2661  \2661  \2661";
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  color: rgba(255,255,255,.75); font-size: 1rem; letter-spacing: 4px;
+}
+.kw-cat-title {
+  margin: 0; padding: 0; border: 0;
+  display: flex; align-items: center; gap: 10px;
+  font: 800 1.15rem/1.2 var(--k-display);
+  letter-spacing: .03em; text-transform: none;
+  color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.16);
+}
+.kw-cat-title a { color: #fff; text-decoration: none; }
+.kw-cat-title::before { content: var(--kw-emoji); font-size: 1.45rem; text-shadow: none; }
+
+/* ---------- forum list ---------- */
+.kw-forums {
+  list-style: none; margin: 0; padding: 24px 14px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ---------- forum card ---------- */
+.kw-forum {
+  position: relative; min-width: 0;
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 14px;
+  background: var(--k-surface-2);
+  border: 2px solid transparent;
+  border-radius: 22px;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+}
+.kw-forum:hover {
+  transform: translateY(-3px);
+  border-color: var(--kw-accent);
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--kw-accent) 35%, transparent);
+}
+.kw-forum::after {               /* sparkle on hover */
+  content: "\2726"; position: absolute; top: 6px; right: 14px;
+  color: var(--kw-accent); font-size: .9rem; opacity: 0; transition: opacity .2s;
+}
+.kw-forum:hover::after { opacity: .9; }
+
+/* ---------- status bubble ---------- */
+.kw-ico {
+  position: relative; flex: none;
+  width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 30% 25%, #fff, var(--k-surface) 50%, color-mix(in srgb, var(--kw-accent) 35%, var(--k-surface)) 100%);
+  border: 3px solid var(--kw-accent);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--kw-accent) 45%, transparent);
+}
+.kw-ico img { display: none; }   /* only used to detect the state */
+.kw-ico::before {
+  content: ""; width: 40px; height: 40px;
+  background: var(--kw-ico-read) center / contain no-repeat;
+  filter: hue-rotate(125deg) saturate(1.15);   /* tints the blue icon pink - delete this line for original colors */
+}
+.kw-ico::after { content: none; }
+
+/* unread */
+.kw-forum:has(.kw-ico img[src*="unread"]) .kw-ico::before { background-image: var(--kw-ico-unread); filter: none; }
+.kw-forum:has(.kw-ico img[src*="unread"]) .kw-ico { animation: kw-pulse 2.2s ease-in-out infinite; }
+.kw-forum:has(.kw-ico img[src*="unread"]) .kw-ico::after {
+  content: "\2605"; position: absolute; top: -6px; right: -6px;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--k-pink-deep); color: #fff; font-size: .7rem;
+  border: 2px solid #fff;
+}
+.kw-forum:has(.kw-ico img[src*="unread"]) {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--kw-accent) 22%, var(--k-surface-2)), var(--k-surface-2) 70%);
+  border-color: color-mix(in srgb, var(--kw-accent) 55%, transparent);
+}
+.kw-forum:has(.kw-ico img[src*="unread"]) .forumtitle::after {
+  content: "NEW"; margin-left: 8px; padding: 2px 8px; border-radius: 999px;
+  background: var(--k-pink-deep); color: #fff; font-size: .62rem; letter-spacing: .08em;
+  vertical-align: middle; display: inline-block; text-decoration: none;
+}
+
+/* locked (comes after unread so it wins) */
+.kw-forum:has(.kw-ico img[src*="locked"]) .kw-ico::before { background-image: var(--kw-ico-locked); filter: grayscale(.25) hue-rotate(125deg); }
+.kw-forum:has(.kw-ico img[src*="locked"]) .kw-ico { animation: none; border-style: dashed; }
+.kw-forum:has(.kw-ico img[src*="locked"]) .kw-ico::after {
+  content: "\1F512"; position: absolute; top: -6px; right: -6px;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--k-lilac); font-size: .7rem; border: 2px solid #fff; color: var(--kw-ink);
+}
+.kw-forum:has(.kw-ico img[src*="locked"]) .forumtitle::after {
+  content: "\1F512"; margin-left: 8px; padding: 0; background: none; font-size: .8rem; letter-spacing: 0;
+}
+
+.kw-forum:hover .kw-ico::before { animation: kw-wiggle .5s ease-in-out; }
+
+@keyframes kw-pulse {
+  0%, 100% { box-shadow: 0 4px 0 rgba(255,93,158,.4), 0 0 0 0 rgba(255,93,158,.45); }
+  50%      { box-shadow: 0 4px 0 rgba(255,93,158,.4), 0 0 0 10px rgba(255,93,158,0); }
+}
+@keyframes kw-wiggle {
+  0%, 100% { rotate: 0deg; } 25% { rotate: -12deg; } 75% { rotate: 12deg; }
+}
+
+/* ---------- title / description / meta ---------- */
+.kw-main { flex: 1 1 0; min-width: 0; }
+.kw-title { margin: 0; padding: 0; border: 0; font: 800 1.12rem/1.25 var(--k-display); }
+.kw-title a.forumtitle { color: var(--kw-deep); text-decoration: none; font: inherit; }
+.kw-title a.forumtitle:hover { text-decoration: underline wavy; text-underline-offset: 5px; }
+.kw-title a:focus-visible { outline: 3px solid var(--k-pink-deep); outline-offset: 3px; border-radius: 6px; }
+.kw-desc { margin-top: 2px; font-size: .84rem; line-height: 1.45; color: var(--kw-soft); }
+
+/* meta rows: only visible when they contain links; commas & labels hidden, emoji used instead */
+.kw-meta { font-size: 0; line-height: 1; margin-top: 5px; }
+.kw-meta:not(:has(a)) { display: none; }
+.kw-meta strong { display: none; }
+.kw-meta:has(a)::before { font-size: .9rem; margin-right: 6px; vertical-align: middle; }
+.kw-meta--subs::before  { content: "\1F338"; }
+.kw-meta--links::before { content: "\1F517"; }
+.kw-meta--mods::before  { content: "\1F451"; }
+.kw-meta a {
+  display: inline-block; margin: 3px 5px 0 0; padding: 2px 11px;
+  border-radius: 999px; border: 2px solid #fff;
+  font: 800 .74rem/1.4 var(--k-display);
+  text-decoration: none; transition: transform .15s;
+}
+.kw-meta a:hover { transform: translateY(-2px) rotate(-2deg); }
+.kw-meta--subs a  { background: var(--k-mint);  color: #1f6b53; }
+.kw-meta--links a { background: var(--k-lemon); color: #7a5f00; }
+.kw-meta--mods a  { background: var(--k-lilac); color: #5a3d8f; }
+
+/* ---------- gumball counters ---------- */
+.kw-stats { flex: none; display: flex; gap: 10px; }
+.kw-stat {
+  position: relative; overflow: hidden;
+  width: 74px; padding: 9px 4px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  border-radius: 24px; text-align: center; color: var(--kw-ink);
+  box-shadow: 0 4px 0 rgba(0,0,0,.09), inset 0 -4px 0 rgba(0,0,0,.05);
+}
+.kw-stat::before {               /* glossy highlight */
+  content: ""; position: absolute; top: 5px; left: 10px;
+  width: 20px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,.75); rotate: -20deg;
+}
+.kw-stat b { font: 800 1.25rem/1 var(--k-display); }
+.kw-stat dfn {
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-style: normal; font-weight: 800; font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; opacity: .75;
+}
+.kw-stat--topics { background: var(--k-mint); }
+.kw-stat--posts  { background: var(--k-lemon); }
+
+/* ---------- last post speech bubble ---------- */
+.kw-last {
+  flex: none; width: 270px; min-width: 0;
+  display: flex; align-items: center; gap: 11px;
+  padding: 10px 14px;
+  background: var(--k-surface);
+  border: 2px dashed var(--k-border);
+  border-radius: 22px 22px 22px 6px;
+}
+.kw-last:not(:has(a))::before { content: "\1F4A4  no posts yet"; font: 700 .8rem var(--k-display); color: var(--kw-soft); }
+.kw-last:not(:has(a)) > * { display: none; }
+
+.kw-avatar {                     /* rainbow candy ring */
+  flex: none; line-height: 0; padding: 3px; border-radius: 50%;
+  background: conic-gradient(var(--k-pink), var(--k-lilac), var(--k-mint), var(--k-lemon), var(--k-pink));
+}
+.kw-avatar img {
+  width: 44px; height: 44px; object-fit: cover; display: block;
+  border-radius: 50%; border: 2px solid var(--k-surface);
+}
+.kw-lp { flex: 1 1 0; min-width: 0; display: block; }
+.kw-lp-title {
+  display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font: 800 .88rem/1.3 var(--k-display); color: var(--k-text); text-decoration: none;
+}
+.kw-lp-title:hover { color: var(--k-pink-deep); }
+.kw-lp-meta { display: block; font-size: .74rem; line-height: 1.5; color: var(--kw-soft); }
+.kw-lp-meta a { font-weight: 800; color: var(--k-pink-deep); text-decoration: none; }
+.kw-lp-meta a:hover { text-decoration: underline wavy; }
+.kw-lp-meta a > img { display: none; }            /* swap the old "latest post" gif for an emoji */
+.kw-lp-meta a:has(> img)::after { content: "\1F48C"; display: inline-block; margin-left: 4px; font-size: .95rem; transition: transform .2s; }
+.kw-lp-meta a:has(> img):hover::after { transform: scale(1.3) rotate(-10deg); }
+
+.kw-ad { display: flex; align-items: center; gap: 11px; }
+
+/* ---------- image gallery block ---------- */
+.kw-gallery { padding: 24px 14px 14px; }
+.kw-gallery .container-imgs-list { padding: 10px; border-radius: 18px; background: var(--k-surface-2); }
+
+/* ---------- dark mode tweaks ---------- */
+[data-theme="dark"] .kw-ico {
+  background: radial-gradient(circle at 30% 25%, #4a3a68, var(--k-surface) 60%);
+}
+[data-theme="dark"] .kw-forum:hover { box-shadow: 0 5px 0 rgba(0,0,0,.3); }
+[data-theme="dark"] .kw-pill--new a { box-shadow: 0 4px 0 rgba(0,0,0,.35); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .kw-forum { flex-wrap: wrap; }
+  .kw-main  { flex: 1 1 220px; }
+  .kw-last  { flex: 1 1 100%; width: auto; order: 3; }
+}
+@media (max-width: 560px) {
+  .kw-cat-head::before { display: none; }
+  .kw-ico { width: 48px; height: 48px; }
+  .kw-ico::before { width: 32px; height: 32px; }
+  .kw-stats { flex: 1 1 100%; order: 2; }
+  .kw-stat { width: auto; flex-direction: row; align-items: baseline; gap: 6px; padding: 6px 14px; border-radius: 999px; }
+  .kw-stat::before { display: none; }
+  .kw-pill--read, .kw-pill--cookies { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kw-forum, .kw-ico, .kw-ico::before, .kw-pill a, .kw-meta a { animation: none !important; transition: none !important; }
+}
