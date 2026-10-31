@@ -44,6 +44,7 @@ body {
 
 /* ===== topic icons (used by topics list + legend) ===== */
 :root {
+  --kt-svg-global:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='19' fill='%23d9e4ff' stroke='%239aa6ff' stroke-width='2.5'/%3E%3Cellipse cx='24' cy='24' rx='8' ry='19' fill='none' stroke='%239aa6ff' stroke-width='2'/%3E%3Cpath d='M6 24h36M9 14.5h30M9 33.5h30' fill='none' stroke='%239aa6ff' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M36 3l1.5 3.5L41 8l-3.5 1.5L36 13l-1.5-3.5L31 8l3.5-1.5z' fill='%23ffe45e' stroke='%23f5b800' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E");
   --kt-svg-topic:    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M10 7h28a7 7 0 0 1 7 7v15a7 7 0 0 1-7 7H27l-9 8v-8h-8a7 7 0 0 1-7-7V14a7 7 0 0 1 7-7z' fill='%23ffd0e4' stroke='%23ff8fb8' stroke-width='2.5' stroke-linejoin='round'/%3E%3Ccircle cx='18' cy='21' r='1.9' fill='%237a3b5a'/%3E%3Ccircle cx='30' cy='21' r='1.9' fill='%237a3b5a'/%3E%3Cpath d='M21.5 25.5q2.5 2.6 5 0' fill='none' stroke='%237a3b5a' stroke-width='1.9' stroke-linecap='round'/%3E%3Cellipse cx='14' cy='25' rx='2.6' ry='1.7' fill='%23ff8fb8' opacity='.6'/%3E%3Cellipse cx='34' cy='25' rx='2.6' ry='1.7' fill='%23ff8fb8' opacity='.6'/%3E%3C/svg%3E");
   --kt-svg-announce: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M7 19l22-10a2 2 0 0 1 3 1.8v26.4a2 2 0 0 1-3 1.8L7 29z' fill='%23dccbff' stroke='%23a78bdf' stroke-width='2.5' stroke-linejoin='round'/%3E%3Crect x='3' y='18' width='7' height='12' rx='3' fill='%23ffe45e' stroke='%23f5b800' stroke-width='2'/%3E%3Cpath d='M13 31v7a3.5 3.5 0 0 0 7 0v-4' fill='none' stroke='%23a78bdf' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M37 19q5 5 0 10M41 14q9 10 0 20' fill='none' stroke='%23ff8fb8' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
   --kt-svg-sticky:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M16 5h16l-2 13 6 7H12l6-7z' fill='%23a8f0d8' stroke='%2334c49b' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M24 25v17' stroke='%238a7a99' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='21' cy='13' r='1.6' fill='%235b3a4e'/%3E%3Ccircle cx='27' cy='13' r='1.6' fill='%235b3a4e'/%3E%3Cpath d='M22.5 16q1.5 1.6 3 0' fill='none' stroke='%235b3a4e' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -455,8 +456,8 @@ body {
 .kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="moved"])    { --kt-accent: #7cc8ff; --kt-svg: var(--kt-svg-moved); }
 .kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="_hot"])     { --kt-accent: #ffa97a; --kt-svg: var(--kt-svg-hot); }
 .kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="sticky"])   { --kt-accent: #5fd3b3; --kt-svg: var(--kt-svg-sticky); }
-.kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="announce"]),
-.kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="global"])   { --kt-accent: #b79bff; --kt-svg: var(--kt-svg-announce); }
+.kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="announce"])  { --kt-accent: #b79bff; --kt-svg: var(--kt-svg-announce); }
+.kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="global"])    { --kt-accent: #9aa6ff; --kt-svg: var(--kt-svg-global); }
 .kw-tbox:not(#k) .kw-t-row:has(.kw-t-status-src[src*="locked"])   { --kt-accent: #b8a9c9; }
 
 .kw-tbox:not(#k) .kw-t-check { position: absolute; top: -8px; left: -8px; z-index: 3; }
@@ -791,21 +792,19 @@ body {
 #kw-forum .kw-leg-ico::before { content: ""; width: 28px; height: 28px; background: var(--kl-svg) center / contain no-repeat; }
 #kw-forum .kw-leg-ico::after  { content: none; }
 #kw-forum .kw-leg-src { display: none; }
-/* type (later wins) */
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="moved"])    { --kl-accent: #7cc8ff; --kl-svg: var(--kt-svg-moved); }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="_hot"])     { --kl-accent: #ffa97a; --kl-svg: var(--kt-svg-hot); }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="sticky"])   { --kl-accent: #5fd3b3; --kl-svg: var(--kt-svg-sticky); }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="announce"]),
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="global"])   { --kl-accent: #b79bff; --kl-svg: var(--kt-svg-announce); }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="locked"])   { --kl-accent: #b8a9c9; }
-/* new = pink glow + star, locked = lock sticker, global = globe sticker */
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="unread"]) .kw-leg-ico { box-shadow: 0 3px 0 rgba(0,0,0,.1), 0 0 0 5px color-mix(in srgb, var(--k-pink-deep) 28%, transparent); }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="unread"]) .kw-leg-ico::after {
+/* type (set by the class on each item) */
+#kw-forum .kw-leg-item.is-hot      { --kl-accent: #ffa97a; --kl-svg: var(--kt-svg-hot); }
+#kw-forum .kw-leg-item.is-sticky   { --kl-accent: #5fd3b3; --kl-svg: var(--kt-svg-sticky); }
+#kw-forum .kw-leg-item.is-announce { --kl-accent: #b79bff; --kl-svg: var(--kt-svg-announce); }
+#kw-forum .kw-leg-item.is-global   { --kl-accent: #9aa6ff; --kl-svg: var(--kt-svg-global); }
+#kw-forum .kw-leg-item.is-locked   { --kl-accent: #b8a9c9; }
+/* new = pink glow + star, locked = lock sticker */
+#kw-forum .kw-leg-item.is-new .kw-leg-ico { box-shadow: 0 3px 0 rgba(0,0,0,.1), 0 0 0 5px color-mix(in srgb, var(--k-pink-deep) 28%, transparent); }
+#kw-forum .kw-leg-item.is-new .kw-leg-ico::after {
   content: "\2605"; position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; border-radius: 50%;
   display: grid; place-items: center; background: var(--k-pink-deep); color: #fff; font-size: .65rem; border: 2px solid var(--kv-rim);
 }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="locked"])::before { content: "\1F512"; position: absolute; left: -6px; top: -8px; z-index: 1; font-size: .9rem; }
-#kw-forum .kw-leg-item:has(.kw-leg-src[src*="global"])::before { content: "\1F30D"; position: absolute; left: -6px; top: -8px; z-index: 1; font-size: .9rem; }
+#kw-forum .kw-leg-item.is-locked::before { content: "\1F512"; position: absolute; left: -6px; top: -8px; z-index: 1; font-size: .9rem; }
 
 /* ---------- dark mode ---------- */
 [data-theme="dark"] #kw-forum { --kv-rim: var(--k-surface); }
