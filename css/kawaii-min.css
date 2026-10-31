@@ -1,7 +1,7 @@
 /* =====================================================
    KAWAII THEME  -  kawaii-min.css
    1. fonts   2. foundation (colors, dark mode)
-   3. index_box   4. topics_list_box   5. viewforum_body   6. index_body   (more templates below)
+   3. index_box   4. topics_list_box   5. viewforum_body   6. index_body   7. actions popup   (more templates below)
    ===================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;800&family=Quicksand:wght@500;700&display=swap');
 
@@ -1013,3 +1013,69 @@ body {
 @media (prefers-reduced-motion: reduce) {
   #kw-home * { transition: none !important; }
 }
+
+/* =====================================================
+   7. ACTIONS POPUP (plus menu, opened from the Actions button)
+   It is created by JS and has inline styles, so some rules need !important.
+   ===================================================== */
+@keyframes kw-pop { from { opacity: 0; transform: translateY(-6px) scale(.97); } to { opacity: 1; transform: none; } }
+
+#plus_menu.overview {
+  max-width: calc(100vw - 24px) !important;
+  z-index: 9999 !important;
+  margin-top: 10px !important;
+  padding: 0 0 10px; box-sizing: border-box;
+  background: var(--k-surface); color: var(--k-text);
+  border: 3px solid var(--k-pink); border-radius: 26px;
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--k-pink) 40%, transparent), 0 16px 30px rgba(120,40,80,.18);
+  font-family: var(--k-font);
+  animation: kw-pop .18s ease-out;
+}
+#plus_menu .title-overview {
+  position: relative; margin: -3px -3px 0; padding: 12px 18px 11px; border: 0;
+  border-radius: 25px 25px 0 0; text-align: center;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.38) 2px, transparent 2.6px) 0 0 / 18px 18px,
+    var(--k-pink);
+  color: #fff; font: 600 1.05rem/1.2 'Fredoka', 'Quicksand', 'Nunito', sans-serif;
+  letter-spacing: .02em; text-shadow: 0 2px 0 rgba(0,0,0,.14);
+}
+#plus_menu .title-overview strong { font: inherit; color: inherit; }
+#plus_menu .title-overview::before { content: "\2726  "; }
+#plus_menu .title-overview::after {              /* frosting drip */
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px;
+  background: radial-gradient(circle at 10px 0, var(--k-pink) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
+}
+#plus_menu .left-overview { margin: 0; padding: 18px 14px 0; text-align: left; }
+#plus_menu .left-overview + hr.dashed + .left-overview { padding-top: 8px; }
+#plus_menu .left-overview strong { display: block; font-weight: inherit; }
+#plus_menu .left-overview br { display: none; }
+#plus_menu .left-overview a {
+  display: flex; align-items: center; gap: 12px; margin: 0 0 4px; padding: 8px 14px 8px 8px;
+  border-radius: 999px; color: var(--k-text); text-decoration: none;
+  font: 500 .92rem/1.2 var(--k-font); transition: background .15s, transform .15s;
+}
+#plus_menu .left-overview a::before {
+  content: "\1F338"; flex: none; display: grid; place-items: center; width: 32px; height: 32px;
+  border-radius: 50%; background: var(--k-surface-2); border: 2px solid var(--k-border); font-size: .95rem;
+}
+#plus_menu .left-overview a:hover { background: var(--k-surface-2); transform: translateX(3px); }
+#plus_menu .left-overview a:focus-visible { outline: 3px solid var(--k-pink-deep); outline-offset: 2px; }
+#plus_menu a[href*="newposts"]::before    { content: "\1F514"; }
+#plus_menu a[href*="egosearch"]::before   { content: "\1F48C"; }
+#plus_menu a[href*="unanswered"]::before  { content: "\1F423"; }
+#plus_menu a[href*="watchsearch"]::before { content: "\1F440"; }
+#plus_menu a[onclick*="link_bbcode"]::before { content: "\1F517"; }
+#plus_menu a[onclick*="print"]::before    { content: "\1F5A8"; }
+#plus_menu hr.dashed { height: 0; margin: 8px 20px 0; border: 0; border-top: 2px dashed var(--k-border); background: none; }
+
+[data-theme="dark"] #plus_menu.overview { box-shadow: 0 7px 0 rgba(0,0,0,.35), 0 16px 30px rgba(0,0,0,.4); }
+[data-theme="dark"] #plus_menu .title-overview {
+  background:
+    radial-gradient(circle, rgba(255,255,255,.22) 2px, transparent 2.6px) 0 0 / 18px 18px,
+    color-mix(in srgb, var(--k-pink) 66%, #2a1a40);
+}
+[data-theme="dark"] #plus_menu .title-overview::after {
+  background: radial-gradient(circle at 10px 0, color-mix(in srgb, var(--k-pink) 66%, #2a1a40) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
+}
+@media (prefers-reduced-motion: reduce) { #plus_menu.overview { animation: none; } }
