@@ -1125,7 +1125,7 @@ html { scroll-padding-top: 84px; }
   content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none;
   background: radial-gradient(circle at 10px 0, var(--kn-bg) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
 }
-#kw-nav .kw-nav-in { display: flex; align-items: center; gap: 14px; max-width: 1180px; margin: 0 auto; padding: 9px 16px; }
+#kw-nav .kw-nav-in { display: flex; align-items: center; gap: 14px; max-width: 1500px; margin: 0 auto; padding: 9px 20px; }
 #kw-nav .kw-nav-left  { flex: none; }
 #kw-nav .kw-nav-center { flex: 1 1 auto; min-width: 0; display: flex; justify-content: center; }
 #kw-nav .kw-nav-right { position: relative; flex: none; display: flex; align-items: center; gap: 8px; }
@@ -1193,9 +1193,6 @@ html { scroll-padding-top: 84px; }
 #kw-nav .navlinks .mainmenu:has(.sprite-icon_logout)::before   { content: "\1F44B"; }
 #kw-nav .navlinks .mainmenu:has(.sprite-icon_register)::before { content: "\1F4DD"; }
 #kw-nav .navlinks .mainmenu:has(.sprite-icon_login)::before    { content: "\1F511"; }
-/* profile + log out: icon only (both are also in the user menu) */
-#kw-nav .navlinks .mainmenu:has(.sprite-icon_ucp),
-#kw-nav .navlinks .mainmenu:has(.sprite-icon_logout) { font-size: 0; padding: 8px 11px; }
 /* unread messages */
 #kw-nav .navlinks .mainmenu:has(.toread-message) { background: var(--k-pink-deep); border-color: var(--kn-rim); color: #fff; }
 #kw-nav .navlinks .mainmenu:has(.toread-message):hover { background: var(--k-lemon); color: #5b3a4e; }
