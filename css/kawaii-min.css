@@ -1105,7 +1105,7 @@ body {
    ===================================================== */
 :root { --kw-toolbar-h: 30px; }                 /* height of the hidden Forumotion toolbar: the bar is pulled up by this much (set 0 if there is no gap) */
 [data-theme="dark"] { color-scheme: dark; }
-html { scroll-padding-top: 84px; }
+html { scroll-padding-top: 100px; }
 #fa_toolbar { display: none !important; }
 #fa_hide { display: none !important; }
 
@@ -1113,6 +1113,7 @@ html { scroll-padding-top: 84px; }
   --kn-font: 'Fredoka', 'Quicksand', 'Nunito', sans-serif;
   --kn-bg: var(--k-pink);
   --kn-rim: #fff;
+  --kn-side: 330px;                 /* width of the left (switch) and right (user) cells, equal so the links are truly centered */
   position: sticky; top: 0; z-index: 9000;
   margin: calc(-1 * var(--kw-toolbar-h)) 0 26px;
   background:
@@ -1125,10 +1126,13 @@ html { scroll-padding-top: 84px; }
   content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none;
   background: radial-gradient(circle at 10px 0, var(--kn-bg) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
 }
-#kw-nav .kw-nav-in { display: flex; align-items: center; gap: 14px; max-width: 1500px; margin: 0 auto; padding: 9px 20px; }
-#kw-nav .kw-nav-left  { flex: none; }
-#kw-nav .kw-nav-center { flex: 1 1 auto; min-width: 0; display: flex; justify-content: center; }
-#kw-nav .kw-nav-right { position: relative; flex: none; display: flex; align-items: center; gap: 8px; }
+#kw-nav .kw-nav-in {
+  display: grid; grid-template-columns: var(--kn-side) minmax(0, 1fr) var(--kn-side);
+  align-items: center; gap: 14px; max-width: none; margin: 0; padding: 8px 24px;
+}
+#kw-nav .kw-nav-left  { justify-self: start; }
+#kw-nav .kw-nav-center { min-width: 0; display: flex; justify-content: center; }
+#kw-nav .kw-nav-right { position: relative; justify-self: end; display: flex; align-items: center; gap: 8px; }
 
 /* ---------- light / dark switch ---------- */
 #kw-nav .kw-theme-toggle { padding: 0; border: 0; background: none; cursor: pointer; display: block; }
@@ -1172,10 +1176,10 @@ html { scroll-padding-top: 84px; }
   list-style: none; font-size: 0; line-height: 1;
 }
 #kw-nav .navlinks .mainmenu {
-  display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px;
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px;
   border-radius: 999px; background: var(--k-surface); color: var(--k-text);
   border: 2px solid var(--kn-rim); box-shadow: 0 3px 0 rgba(0,0,0,.1);
-  font: 500 .8rem/1 var(--kn-font); text-decoration: none; transition: transform .15s, background .15s;
+  font: 500 .78rem/1 var(--kn-font); text-decoration: none; transition: transform .15s, background .15s;
 }
 #kw-nav .navlinks .mainmenu:hover { transform: translateY(-2px); background: var(--k-lemon); color: #5b3a4e; }
 #kw-nav .navlinks .mainmenu:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
@@ -1239,10 +1243,10 @@ html { scroll-padding-top: 84px; }
 
 /* ---------- right side: user menu + notifications (moved from the toolbar) ---------- */
 #kw-nav #fa_welcome, #kw-nav #fa_notifications, #kw-nav .kw-nav-right > a:not(#fa_hide) {
-  display: inline-flex; align-items: center; gap: 7px; float: none; height: auto; margin: 0; padding: 8px 14px;
+  display: inline-flex; align-items: center; gap: 6px; float: none; height: auto; margin: 0; padding: 7px 12px;
   border-radius: 999px; background: var(--k-surface); color: var(--k-text);
   border: 2px solid var(--kn-rim); box-shadow: 0 3px 0 rgba(0,0,0,.1);
-  font: 500 .8rem/1 var(--kn-font); text-decoration: none; cursor: pointer; transition: transform .15s, background .15s;
+  font: 500 .78rem/1 var(--kn-font); text-decoration: none; cursor: pointer; transition: transform .15s, background .15s;
 }
 #kw-nav #fa_welcome:hover, #kw-nav #fa_notifications:hover, #kw-nav .kw-nav-right > a:not(#fa_hide):hover { transform: translateY(-2px); background: var(--k-lemon); color: #5b3a4e; }
 #kw-nav #fa_welcome::before { content: "\1F338"; font-size: 1rem; }
@@ -1347,12 +1351,16 @@ html { scroll-padding-top: 84px; }
 [data-theme="dark"] #kw-nav #search_menu, [data-theme="dark"] #kw-nav #fa_menulist, [data-theme="dark"] #kw-nav #notif_list { border-color: var(--kn-bg); }
 
 /* ---------- small screens: not sticky, two rows ---------- */
+@media (max-width: 1500px) {
+  #kw-nav .kw-nav-in { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "left right" "center center"; gap: 8px 14px; }
+  #kw-nav .kw-nav-left   { grid-area: left; }
+  #kw-nav .kw-nav-right  { grid-area: right; }
+  #kw-nav .kw-nav-center { grid-area: center; }
+}
 @media (max-width: 900px) {
   #kw-nav { position: static; }
   html { scroll-padding-top: 0; }
-  #kw-nav .kw-nav-in { flex-wrap: wrap; }
-  #kw-nav .kw-nav-right { margin-left: auto; }
-  #kw-nav .kw-nav-center { order: 3; flex: 1 1 100%; }
+  #kw-nav .kw-nav-in { padding: 8px 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   #kw-nav *, #kw-nav *::before { transition: none !important; }
