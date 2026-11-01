@@ -1383,3 +1383,43 @@ html { scroll-padding-top: 100px; }
 @media (prefers-reduced-motion: reduce) {
   #kw-nav *, #kw-nav *::before { transition: none !important; }
 }
+
+/* ----- user menu + notifications: hardening against the old toolbar CSS (long selectors on purpose) ----- */
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu {
+  display: flex !important; flex-wrap: wrap !important; align-items: center !important; gap: 8px 12px !important;
+  float: none !important; position: relative !important; width: auto !important; max-width: none !important;
+  height: auto !important; min-height: 0 !important; box-sizing: border-box !important;
+  margin: -3px -3px 10px !important; padding: 16px 18px 14px !important;
+  border: 0 !important; border-radius: 25px 25px 0 0 !important; color: #fff !important;
+  background: radial-gradient(circle, rgba(255,255,255,.38) 2px, transparent 2.6px) 0 0 / 18px 18px, var(--kn-bg) !important;
+}
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu img {
+  flex: none !important; float: none !important; width: 56px !important; height: 56px !important; max-width: none !important; max-height: none !important;
+  margin: 0 !important; object-fit: cover; border-radius: 50% !important; border: 3px solid #fff !important;
+}
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu #fa_ranktitle {
+  flex: 1 1 0 !important; min-width: 0 !important; float: none !important; display: block !important; width: auto !important;
+  margin: 0 !important; padding: 0 !important; background: none !important; border: 0 !important;
+  color: #fff !important; font: 600 1.1rem/1.2 var(--kn-font) !important; text-decoration: none !important; text-shadow: 0 2px 0 rgba(0,0,0,.14);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu table { display: block !important; flex: 1 1 100% !important; width: 100% !important; margin: 0 !important; border: 0 !important; background: none !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu tbody { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu tr { display: flex !important; align-items: baseline !important; gap: 5px !important; width: auto !important; padding: 4px 11px !important; border-radius: 999px !important; background: rgba(255,255,255,.3) !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu td { display: block !important; width: auto !important; padding: 0 !important; border: 0 !important; background: none !important; color: #fff !important; font: 500 .75rem/1.3 var(--k-font) !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu td:nth-child(2) { display: none !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist #fa_usermenu td.bold { font: 600 .85rem/1.3 var(--kn-font) !important; }
+
+#fa_toolbar #fa_right #fa_menu #fa_menulist li { float: none !important; clear: both; width: auto !important; height: auto !important; margin: 0 !important; padding: 0 12px !important; background: none !important; border: 0 !important; list-style: none !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist li.fa_separator { height: 0 !important; margin: 6px 20px !important; padding: 0 !important; border-top: 2px dashed var(--k-border) !important; }
+#fa_toolbar #fa_right #fa_menu #fa_menulist li a {
+  display: flex !important; align-items: center !important; gap: 12px !important; float: none !important;
+  width: auto !important; height: auto !important; margin: 0 0 3px !important; padding: 7px 12px 7px 8px !important;
+  border: 0 !important; border-radius: 999px !important; background: none !important;
+  color: var(--k-text) !important; font: 500 .9rem/1.2 var(--k-font) !important; text-decoration: none !important;
+}
+#fa_toolbar #fa_right #fa_menu #fa_menulist li a:hover { background: var(--k-surface-2) !important; }
+
+#fa_toolbar #fa_right #notif_list li { float: none !important; width: auto !important; height: auto !important; list-style: none !important; }
+#fa_toolbar #fa_right #notif_list li a { color: var(--k-text) !important; text-decoration: none !important; }
+#fa_toolbar #fa_right #notif_list li.see_all a { color: #fff !important; }
