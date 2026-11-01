@@ -1788,7 +1788,8 @@ html { scroll-padding-top: 100px; }
 #kw-topic .kw-pb-tools li a:has(> img[class*="thank"]),  #kw-topic .kw-pb-tools li a:has(> img[src*="thank"])  { --kb: #ffc2dc; }
 #kw-topic .kw-pb-tools li a:has(> img[class*="thank"])::before, #kw-topic .kw-pb-tools li a:has(> img[src*="thank"])::before { content: "\1F496"; }
 #kw-topic .kw-pb-tools li:has(> img[id^="post_mq"])      { --kb: #e3d5ff; }
-#kw-topic .kw-pb-tools li:has(> img[id^="post_mq"])::before { content: "\1F4CE"; }
+#kw-topic .kw-pb-tools li:has(> img[id^="post_mq"])::before { content: "\2795"; }
+#kw-topic .kw-pb-tools li:has(> img[id^="post_mq"][src*="_on"])::before { content: "\2705"; }
 #kw-topic .kw-pb-tools li:has(> img[id^="post_mq"][src*="_on"]) { --kb: var(--k-pink-deep); }
 #kw-topic .kw-pb-tools li a:has(> img[class*="quote"])   { --kb: #fff3a8; }
 #kw-topic .kw-pb-tools li a:has(> img[class*="quote"])::before  { content: "\1F4AC"; }
@@ -1817,11 +1818,6 @@ html { scroll-padding-top: 100px; }
   box-shadow: 0 8px 0 rgba(0,0,0,.07), 0 14px 22px rgba(120,40,80,.16); rotate: -2deg; transition: rotate .25s;
 }
 #kw-topic .kw-post:hover .kw-pf-head { rotate: 0deg; }
-#kw-topic .kw-pf-head::before {                  /* tape on top of the photo */
-  content: ""; position: absolute; top: -13px; left: 50%; width: 88px; height: 26px; margin-left: -44px; rotate: 3deg; opacity: .95;
-  background: var(--ks-tape), var(--kp-accent);
-  clip-path: polygon(0 0, 100% 0, 98% 25%, 100% 50%, 98% 75%, 100% 100%, 0 100%, 2% 75%, 0 50%, 2% 25%);
-}
 #kw-topic .kw-pf-head br { display: none; }
 #kw-topic .kw-pf-photo { display: block; line-height: 0; }
 #kw-topic .kw-pf-photo a { display: block; }
@@ -1849,7 +1845,7 @@ html { scroll-padding-top: 100px; }
 }
 #kw-topic .kw-pf-fields .label span { color: inherit !important; }
 #kw-topic .kw-pf-contact { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 12px 0 0 !important; font-size: .8rem; }
-#kw-topic .kw-pf-contact a:has(> img[src*="user_profile"])::before { content: "\1F9F8"; }
+#kw-topic .kw-pf-contact a:has(> img[src*="user_profile"])::before { content: "\1F464"; }
 #kw-topic .kw-pf-contact a:has(> img[src*="contact_pm"])::before   { content: "\1F48C"; }
 #kw-topic .kw-pf-contact a:has(> img[src*="contact_email"])::before { content: "\2709\FE0F"; }
 #kw-topic .kw-pf-contact a:has(> img[src*="contact_www"])::before  { content: "\1F310"; }
