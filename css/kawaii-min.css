@@ -1117,7 +1117,12 @@ html { scroll-padding-top: 100px; }
   background: none !important; border: 0 !important; box-shadow: none !important; overflow: visible !important;
   pointer-events: none; z-index: 9100 !important;
 }
-#fa_toolbar #fa_left, #fa_toolbar #fa_search, #fa_toolbar #fa_share { display: none !important; }
+#fa_toolbar #fa_search, #fa_toolbar #fa_share { display: none !important; }
+/* the Forumotion logo + link (#fa_left): left exactly as Forumotion made it, only moved next to the light/dark switch */
+#fa_toolbar #fa_left {
+  position: absolute !important; top: 10px !important; left: 102px !important; right: auto !important;
+  pointer-events: auto; z-index: 1;
+}
 #fa_toolbar #fa_right {
   position: absolute !important; top: 10px !important; right: 24px !important; left: auto !important;
   float: none !important; width: auto !important; height: auto !important; margin: 0 !important; padding: 0 !important;
@@ -1379,6 +1384,7 @@ html { scroll-padding-top: 100px; }
   #kw-nav .kw-nav-in { padding: 8px 14px; }
   #fa_toolbar { position: absolute !important; }
   #fa_toolbar #fa_right { right: 14px !important; }
+  #fa_toolbar #fa_left { left: 92px !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   #kw-nav *, #kw-nav *::before { transition: none !important; }
