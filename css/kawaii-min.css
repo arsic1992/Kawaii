@@ -1996,12 +1996,12 @@ html { scroll-padding-top: 100px; }
 #kw-members .kw-mcard:nth-child(8n+8) { --kc: #e592ff; }
 
 #kw-members .kw-mc-num {
-  position: absolute; top: 12px; left: 12px; z-index: 2; display: grid; place-items: center;
+  position: absolute; top: 12px; left: 12px; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 1px;
   min-width: 34px; height: 34px; padding: 0 9px; border-radius: 999px;
   background: var(--kc); color: #fff; border: 3px solid var(--k-surface);
   font: 600 .85rem/1 var(--ks-font); text-shadow: 0 1px 0 rgba(0,0,0,.18);
 }
-#kw-members .kw-mc-num::before { content: "#"; opacity: .85; margin-right: 1px; }
+#kw-members .kw-mc-num::before { content: "#"; opacity: .85; font-size: .75rem; }
 
 /* avatar hangs over the top edge, name is a white name tag */
 #kw-members .kw-mc-id { margin: -52px 0 0; padding: 0; }
