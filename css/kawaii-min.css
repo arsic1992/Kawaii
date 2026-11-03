@@ -1,7 +1,7 @@
 /* =====================================================
    KAWAII THEME  -  kawaii-min.css
    1. fonts   2. foundation (colors, dark mode)
-   3. index_box   4. topics_list_box   5. viewforum_body   6. index_body   7. actions popup   8. navigation bar   9. viewtopic_body   10. memberlist_body   (more templates below)
+   3. index_box   4. topics_list_box   5. viewforum_body   6. index_body   7. actions popup   8. navigation bar   9. viewtopic_body   10. memberlist_body   11. page wrapper   (more templates below)
    ===================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;800&family=Quicksand:wght@500;700&display=swap');
 
@@ -1979,7 +1979,7 @@ html { scroll-padding-top: 100px; }
   --kc: #ff8fb8;
   --kc-tint: color-mix(in srgb, var(--kc) 14%, var(--k-surface));
   --kc-soft: color-mix(in srgb, var(--k-text) 72%, var(--kc-tint));
-  position: relative; flex: 0 0 calc((100% - 60px) / 4); min-width: 0;
+  position: relative; flex: 0 0 calc((100% - 40px) / 3); min-width: 0;
   display: flex; flex-direction: column; align-items: center; text-align: center;
   margin: 0; padding: 0 18px 18px; list-style: none;
   background: var(--kc-tint); border: 3px solid var(--kc); border-radius: 28px;
@@ -2031,11 +2031,11 @@ html { scroll-padding-top: 100px; }
 /* stat rows */
 #kw-members .kw-mc-stats { width: 100%; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 #kw-members .kw-mc-stat {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0; padding: 6px 12px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px 10px; margin: 0; padding: 6px 12px;
   border-radius: 999px; background: var(--k-surface); border: 2px solid var(--k-border);
 }
 #kw-members .kw-mc-stat dt { display: flex; align-items: center; gap: 6px; margin: 0; flex: none; font: 600 .68rem/1.2 var(--ks-font); letter-spacing: .05em; text-transform: uppercase; color: var(--kc-soft); }
-#kw-members .kw-mc-stat dd { margin: 0; min-width: 0; text-align: right; font: 500 .8rem/1.3 var(--k-font); color: var(--k-text); }
+#kw-members .kw-mc-stat dd { margin: 0; min-width: 0; white-space: nowrap; margin-left: auto; text-align: right; font: 500 .8rem/1.3 var(--k-font); color: var(--k-text); }
 #kw-members .kw-mc-joined dt::before { content: "\1F338"; font-size: .85rem; }
 #kw-members .kw-mc-visit  dt::before { content: "\1F552"; font-size: .85rem; }
 #kw-members .kw-mc-posts  dt::before { content: "\1F48C"; font-size: .85rem; }
@@ -2089,7 +2089,24 @@ html { scroll-padding-top: 100px; }
 [data-theme="dark"] #kw-members .kw-mc-link img { box-shadow: 0 6px 0 rgba(0,0,0,.35); }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1100px) { #kw-members .kw-mcard { flex-basis: calc((100% - 40px) / 3); } }
-@media (max-width: 800px)  { #kw-members .kw-mcard { flex-basis: calc((100% - 20px) / 2); } #kw-members .kw-mb-fields { justify-content: flex-start; } }
-@media (max-width: 520px)  { #kw-members .kw-mcard { flex-basis: 100%; } #kw-members .kw-mb-input { width: 150px; } }
+@media (max-width: 900px)  { #kw-members .kw-mcard { flex-basis: calc((100% - 20px) / 2); } #kw-members .kw-mb-fields { justify-content: flex-start; } }
+@media (max-width: 560px)  { #kw-members .kw-mcard { flex-basis: 100%; } #kw-members .kw-mb-input { width: 150px; } }
 @media (prefers-reduced-motion: reduce) { #kw-members * { transition: none !important; } }
+
+/* =====================================================
+   11. PAGE WRAPPER FOLLOWS THE THEME
+   The old forum CSS paints #wrap white, which looked wrong in dark mode.
+   Light mode keeps the white sheet, dark mode lets the page background show.
+   ===================================================== */
+#wrap { background: var(--k-surface) !important; color: var(--k-text); }
+[data-theme="dark"] #wrap,
+[data-theme="dark"] .conteneur_minwidth_IE,
+[data-theme="dark"] .conteneur_layout_IE,
+[data-theme="dark"] .conteneur_container_IE,
+[data-theme="dark"] #page-body,
+[data-theme="dark"] #outer-wrapper,
+[data-theme="dark"] #wrapper,
+[data-theme="dark"] #container,
+[data-theme="dark"] #content,
+[data-theme="dark"] #main,
+[data-theme="dark"] #main-content { background: transparent !important; }
