@@ -1,7 +1,7 @@
 /* =====================================================
    KAWAII THEME  -  kawaii-min.css
    1. fonts   2. foundation (colors, dark mode)
-   3. index_box   4. topics_list_box   5. viewforum_body   6. index_body   7. actions popup   8. navigation bar   9. viewtopic_body   10. memberlist_body   11. page wrapper   (more templates below)
+   3. index_box   4. topics_list_box   5. viewforum_body   6. index_body   7. actions popup   8. navigation bar   9. viewtopic_body   10. memberlist_body   11. page wrapper   12. header banner   (more templates below)
    ===================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;800&family=Quicksand:wght@500;700&display=swap');
 
@@ -1311,17 +1311,14 @@ html { scroll-padding-top: 100px; }
   --kn-rim: #fff;
   --kn-side: 330px;                 /* width of the left (switch) and right (user) cells, equal so the links are truly centered */
   position: sticky; top: 0; z-index: 9000;
-  margin: calc(-1 * var(--kw-toolbar-h)) 0 26px;
+  margin: calc(-1 * var(--kw-toolbar-h)) 0 0;
   background:
     radial-gradient(circle, rgba(255,255,255,.38) 2px, transparent 2.6px) 0 0 / 18px 18px,
     var(--kn-bg);
   font-family: var(--k-font); color: var(--k-text);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--kn-bg) 45%, transparent);
 }
 #kw-nav *, #kw-nav *::before, #kw-nav *::after { box-sizing: border-box; }
-#kw-nav::after {                                   /* frosting drip */
-  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none;
-  background: radial-gradient(circle at 10px 0, var(--kn-bg) 9px, transparent 10px) 0 0 / 20px 10px repeat-x;
-}
 #kw-nav .kw-nav-in {
   display: grid; grid-template-columns: var(--kn-side) minmax(0, 1fr) var(--kn-side);
   align-items: start; gap: 14px; max-width: none; margin: 0; padding: 8px 24px;
@@ -2132,3 +2129,32 @@ html { scroll-padding-top: 100px; }
   color: #5b3a4e !important; -webkit-text-fill-color: #5b3a4e !important; background: var(--k-lemon) !important;
 }
 #fa_toolbar #fa_right #fa_menu:hover #fa_welcome { color: #5b3a4e !important; -webkit-text-fill-color: #5b3a4e !important; background: var(--k-lemon) !important; }
+
+/* =====================================================
+   12. HEADER BANNER  (outside the wrapper, full width, right under the navigation)
+   ===================================================== */
+:root { --kw-header-h: 435px; }                     /* banner height */
+#page-header {
+  position: relative; float: none !important; clear: both;
+  width: 100% !important; height: var(--kw-header-h) !important; margin: 0 !important; padding: 0 !important;
+  overflow: hidden; background: var(--k-surface-2) !important; border: 0 !important; border-radius: 0 !important;
+}
+#page-header .headerbar,
+#page-header .headerbar .inner,
+#page-header #logo-desc {
+  float: none !important; width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important;
+  background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+}
+#page-header .corners-top, #page-header .corners-bottom { display: none !important; }
+#page-header #logo { display: block !important; float: none !important; width: 100%; height: 100%; margin: 0; padding: 0; }
+#page-header #logo img {
+  display: block; width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important;
+  margin: 0; object-fit: cover; object-position: center;
+}
+/* the search box is hidden here; the site title / description stay in the page for search engines only */
+#page-header .navbar, #page-header #search-box { display: none !important; }
+#page-header #site-title, #page-header #logo-desc > p {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+#wrap { margin-top: 24px; }
+@media (max-width: 600px) { :root { --kw-header-h: 260px; } }   /* phones get a shorter banner */
