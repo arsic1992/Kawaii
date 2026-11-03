@@ -2110,3 +2110,25 @@ html { scroll-padding-top: 100px; }
 [data-theme="dark"] #content,
 [data-theme="dark"] #main,
 [data-theme="dark"] #main-content { background: transparent !important; }
+
+/* ----- "Welcome Admin" + "Notifications" buttons: make sure the text can never turn invisible (old toolbar CSS) ----- */
+#fa_toolbar #fa_right #fa_menu #fa_welcome,
+#fa_toolbar #fa_right #fa_menu #fa_welcome:link,
+#fa_toolbar #fa_right #fa_menu #fa_welcome:visited,
+#fa_toolbar #fa_right #fa_menu #fa_welcome:focus,
+#fa_toolbar #fa_right #fa_menu #fa_welcome:active,
+#fa_toolbar #fa_right #fa_notifications,
+#fa_toolbar #fa_right #fa_notifications:link,
+#fa_toolbar #fa_right #fa_notifications:visited,
+#fa_toolbar #fa_right #fa_notifications:focus,
+#fa_toolbar #fa_right #fa_notifications:active {
+  color: var(--k-text) !important; -webkit-text-fill-color: var(--k-text) !important;
+  background: var(--k-surface) !important; background-image: none !important;
+  font: 500 .78rem/1 var(--kn-font) !important; text-indent: 0 !important; text-shadow: none !important; opacity: 1 !important;
+  text-decoration: none !important; outline: 0;
+}
+#fa_toolbar #fa_right #fa_menu #fa_welcome:hover,
+#fa_toolbar #fa_right #fa_notifications:hover {
+  color: #5b3a4e !important; -webkit-text-fill-color: #5b3a4e !important; background: var(--k-lemon) !important;
+}
+#fa_toolbar #fa_right #fa_menu:hover #fa_welcome { color: #5b3a4e !important; -webkit-text-fill-color: #5b3a4e !important; background: var(--k-lemon) !important; }
