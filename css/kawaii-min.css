@@ -2221,7 +2221,7 @@ form[name="post"] input.button2[type="submit"]:active, #quick_reply input.button
 .sceditor-container {
   position: relative; box-sizing: border-box; width: 100% !important; max-width: 100%; margin: 0 !important; padding: 0;
   background: var(--k-surface) !important; color: var(--k-text);
-  border: 3px solid var(--k-pink) !important; border-radius: 26px !important; overflow: hidden;
+  border: 3px solid var(--k-pink) !important; border-radius: 26px !important; overflow: visible;
   box-shadow: 0 6px 0 color-mix(in srgb, var(--k-pink) 38%, transparent);
   font-family: var(--k-font);
 }
@@ -2373,3 +2373,22 @@ div.sceditor-dropdown .button, div.sceditor-dropdown input[type="button"], div.s
 .sceditor-container:not(#k) .sceditor-toolbar:not(#k) a.sceditor-button-twemojifa { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11v1a10 10 0 1 1-9-10'/%3E%3Cpath d='M8 14s1.5 2 4 2 4-2 4-2'/%3E%3Cpath d='M9 9h.01M15 9h.01'/%3E%3Cpath d='M16 5h6M19 2v6'/%3E%3C/svg%3E"); }
 .sceditor-container:not(#k) .sceditor-toolbar:not(#k) a.sceditor-button-color { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='13.5' cy='6.5' r='.5'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5'/%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.8.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-4.9-4.5-9-10-9z'/%3E%3C/svg%3E"); }
 .sceditor-container:not(#k) .sceditor-toolbar:not(#k) a.sceditor-button-embed { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2'/%3E%3Cpath d='M3 9h18M7 6.5h.01M10 6.5h.01'/%3E%3C/svg%3E"); }
+
+/* ----- editor pop-ups: readable text, never clipped ----- */
+.sceditor-container:not(#k) .sceditor-toolbar:not(#k) { border-radius: 23px 23px 0 0 !important; }
+.sceditor-container:not(#k) textarea:not(#k), .sceditor-container:not(#k) iframe:not(#k) { border-radius: 0 0 23px 23px !important; }
+div.sceditor-dropdown:not(#k), div.sceditor-dropdown:not(#k) div, div.sceditor-dropdown:not(#k) label, div.sceditor-dropdown:not(#k) span, div.sceditor-dropdown:not(#k) p {
+  color: var(--k-text) !important;
+}
+div.sceditor-dropdown:not(#k) { min-width: 250px; }
+div.sceditor-dropdown:not(#k) label { display: block; margin: 0 0 2px; font: 600 .8rem/1.4 var(--k-font) !important; }
+div.sceditor-dropdown:not(#k) input[type="text"], div.sceditor-dropdown:not(#k) input[type="url"], div.sceditor-dropdown:not(#k) input[type="number"],
+div.sceditor-dropdown:not(#k) select, div.sceditor-dropdown:not(#k) textarea {
+  width: 100% !important; color: var(--k-text) !important; background: var(--k-surface-2) !important;
+  border: 2px solid var(--k-border) !important; border-radius: 999px !important; box-shadow: none !important;
+}
+div.sceditor-dropdown:not(#k) input::placeholder { color: color-mix(in srgb, var(--k-text) 55%, transparent) !important; }
+div.sceditor-dropdown:not(#k) input[type="text"]:focus, div.sceditor-dropdown:not(#k) textarea:focus { border-color: var(--k-pink-deep) !important; }
+div.sceditor-dropdown:not(#k) .button, div.sceditor-dropdown:not(#k) input[type="button"], div.sceditor-dropdown:not(#k) input[type="submit"] {
+  color: #1f6b53 !important; background: var(--k-mint) !important; border: 2px solid #fff !important; border-radius: 999px !important;
+}
